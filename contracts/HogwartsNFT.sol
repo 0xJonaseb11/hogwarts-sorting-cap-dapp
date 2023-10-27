@@ -34,4 +34,58 @@ contract HogwartsNFT is ERC721URIStorage, Ownable {
         "ipfs://QmXja2QBKsNW9qnw9kKfcm25rJTomwAVJUrXekYFJnVwbg/Ravenclaw.json",
         "ipfs://QmXja2QBKsNW9qnw9kKfcm25rJTomwAVJUrXekYFJnVwbg/Slytherin.json"
     ];
+
+    // lets create event to be envoked when Nft is minted
+    event NftMinted(uint256 house, address minter, string name);
+
+    /**let's set the initial contract state with 
+    *@param  a constructor with our contract_Name and symbol HP
+    */
+    constructor() ER721("HogwartsNFT", "HP") {
+        s_tokenCounter = 0;
+    }
+     
+     /**this is a view read only funcn that allows anyone to check whether 
+     *@param a specific address _user has already minted an NFT 
+     *@param by returning a bool indecating minted or not
+    */
+    function hasMintedNFT(address _user) public view returns(bool) {
+        return hasMinted[_user];
+    }
+    
+    /**
+    *@param Thus funcallows anyone to query the index 
+    *@param of the Hogwarts house associated 
+    *@param with a specific address _user  also returns uint256 for index
+    */
+
+    function getHouseIndex(address _user) public view returns(uint256) {
+        return s_addressToHouse[_user];
+    }
+
+    /**
+    *@param lets allow contract owners to mint NFTs for users
+    *@param and handles some errors, initialises a token, prevents double minting etc
+    */
+
+    function mintNft(address recipient, uint256 house, string memory name) external onlOwner {
+        // ensure the address has not minted already
+        require(!hasMinted[recipient], "You have already minted");
+
+        uint256 tokenId = s_tokenCounter;
+        _safeMint(recipient, tokenId);
+        _setTokenURIs[house];
+        s_addressToHouse[recipient] = house; // map house to address
+        s_addressToName[recipient] = name; // map name to address
+        s_tokenCounter += 1;
+        //mark address as having minted an NFT
+        hasMinted[recipient] = true;
+
+        //emit event indicating that NFT has been minted
+        emit NftMinted(house, recipient, name);
+    }
+
+    
+
+
 }
