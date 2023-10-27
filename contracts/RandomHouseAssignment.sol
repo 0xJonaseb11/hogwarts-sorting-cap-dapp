@@ -46,14 +46,17 @@ contract RandomHouseAssignment is VRFConsumerBaseV2 {
         i_keyHash = keyHash;
         i_callbackGasLimit = callbackGasLimit;
     }
-
+     
+     /**
+     *@param this allows a user to request a Hogwarts-themed NFT. */
     function requestNFT(string memory name) public {
+        //inittiate a equest to the Chainlink VRF service to generate random words
         uint256 requestId = i_vrfCoordinator.requestRandomWords(
             i_keyHash,
             i_subscriptionId,
-            3,
+            3,//number of random words to request
             i_callbackGasLimit,
-            1
+            1 //userProvidedSeed
         );
 
         s_requestIdToSender[requestId] = msg.sender;
@@ -62,6 +65,15 @@ contract RandomHouseAssignment is VRFConsumerBaseV2 {
         //emit event when nft is requested
         emit NftRequested(requestId, msg.sender);
     }
+
+    function fulFillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
+        address nftOwner = s_requestIdToSender[requestId];
+        string memory name = s_nameToSender[nftOwner];
+        uint256 house = randomWords[0] % 4;
+        nftContract.mintNFT(nftOwner, house, name);
+    }
+
+    
 
 
 

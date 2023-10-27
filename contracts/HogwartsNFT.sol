@@ -68,7 +68,7 @@ contract HogwartsNFT is ERC721URIStorage, Ownable {
     *@param and handles some errors, initialises a token, prevents double minting etc
     */
 
-    function mintNft(address recipient, uint256 house, string memory name) external onlOwner {
+    function mintNFT(address recipient, uint256 house, string memory name) external onlOwner {
         // ensure the address has not minted already
         require(!hasMinted[recipient], "You have already minted");
 
