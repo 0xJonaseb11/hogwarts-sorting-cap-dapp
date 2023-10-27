@@ -54,7 +54,7 @@ contract HogwartsNFT is ERC721URIStorage, Ownable {
     }
     
     /**
-    *@param Thus funcallows anyone to query the index 
+    *@param This func allows anyone to query the index 
     *@param of the Hogwarts house associated 
     *@param with a specific address _user  also returns uint256 for index
     */
@@ -85,7 +85,23 @@ contract HogwartsNFT is ERC721URIStorage, Ownable {
         emit NftMinted(house, recipient, name);
     }
 
-    
+    /**
+    *@param This function overrides the _beforeTokenTransfer 
+    *@param function of the parent contract ERC721.
+    *@param it inforces a custom transfer condition where transfers
+    *@param are only allowed from or to the zero address address(0),
+    *@param indeicating that the tokens are soulbound within the hogwarts context
+    *@param when the condition is not met, it reverts the transaction
+    */
+
+    function _beforeTokenTransfer(address from, address to, uint256 firstTokenId, uint256 batchSize) 
+    internal virtual override {
+        super._beforeTokenTransfer(from, to, firstTokenId, batchSize);
+
+        require(from == address(0) || to == address(0), "Err! This is not allowed in Our Hogwarts");
+    }
+
+
 
 
 }
