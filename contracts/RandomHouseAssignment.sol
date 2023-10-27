@@ -31,7 +31,8 @@ contract RandomHouseAssignment is VRFConsumerBaseV2 {
     */
 
     event NftRequested(uint256 indexed requestId, address requester);
-
+    
+    //Initialize contract with various parameters
     constructor(
         address _nftContract,
         address vrfCoordinatorV2Address,
@@ -45,5 +46,23 @@ contract RandomHouseAssignment is VRFConsumerBaseV2 {
         i_keyHash = keyHash;
         i_callbackGasLimit = callbackGasLimit;
     }
+
+    function requestNFT(string memory name) public {
+        uint256 requestId = i_vrfCoordinator.requestRandomWords(
+            i_keyHash,
+            i_subscriptionId,
+            3,
+            i_callbackGasLimit,
+            1
+        );
+
+        s_requestIdToSender[requestId] = msg.sender;
+        s_nameToSender[msg.sender] = name;
+
+        //emit event when nft is requested
+        emit NftRequested(requestId, msg.sender);
+    }
+
+
 
 }
