@@ -22,7 +22,8 @@ async function main() {
 
     const RandomHouse = await hre.ethers.getContractFactory("RandomHouseAssignment");
     const randomHouse = await RandomHouse.deploy(hogwartsAddress, vrfCoordinatorV2Address, subId, keyHash, callbackGasLimit);
-
+    
+    
     while (currentBlock + 5 > (await hre.ethers.provider.getBlockNumber())) {}
 
     const randomAddress = await randomHouse.getAddress();
