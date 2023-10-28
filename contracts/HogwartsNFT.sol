@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.8;
 
 import { ERC721URIStorage } from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
@@ -74,7 +74,7 @@ contract HogwartsNFT is ERC721URIStorage, Ownable {
 
         uint256 tokenId = s_tokenCounter;
         _safeMint(recipient, tokenId);
-        _setTokenURIs[house];
+        // _setTokenURIs[house];
         s_addressToHouse[recipient] = house; // map house to address
         s_addressToName[recipient] = name; // map name to address
         s_tokenCounter += 1;
