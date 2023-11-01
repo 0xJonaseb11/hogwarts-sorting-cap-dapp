@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.0;
 
 /**
 *@author @Jonas-sebera
@@ -8,8 +8,8 @@ pragma solidity ^0.8.19;
 */
 
 import { HogwartsNFT } from "./HogwartsNFT.sol";
-import { VRFCoordinatorV2Interface } from "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
-import { VRFConsumerBaseV2 } from "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
+import { VRFCoordinatorV2Interface } from "chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
+import { VRFConsumerBaseV2 } from "chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 
 
 contract RandomHouseAssignment is VRFConsumerBaseV2 {

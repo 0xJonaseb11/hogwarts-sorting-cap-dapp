@@ -20,7 +20,13 @@ module.exports = {
       optimizer: {
         enabled: true,
         runs: 200
-      }
+      },
+      remappings: [
+        // Add your remappings here
+        // "@openzeppelin=import-path-to-openzeppelin-contracts",
+        // "@chainlink/contracts:node_modules/@chainlink/contracts/",
+        // Add more remappings as needed
+      ],
     }
   },
 }
