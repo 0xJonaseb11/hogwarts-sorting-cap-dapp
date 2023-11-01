@@ -42,4 +42,6 @@ async function main() {
 
   }
 
+
+  // invoke func here
   main();
