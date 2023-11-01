@@ -5,7 +5,7 @@ import { ERC721URIStorage } from "@openzeppelin/contracts/token/ERC721/extension
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-abstract contract HogwartsNFT is ERC721URIStorage, Ownable {
+contract HogwartsNFT is ERC721URIStorage, Ownable {
     
     /**
     * @dev let's create different mappings
@@ -96,7 +96,7 @@ abstract contract HogwartsNFT is ERC721URIStorage, Ownable {
 
     function _beforeTokenTransfer(address from, address to, uint256 firstTokenId, uint256 batchSize) 
     internal virtual {
-        super._beforeTokenTransfer(from, to, firstTokenId, batchSize);
+        (from, to, firstTokenId, batchSize);
 
         require(from == address(0) || to == address(0), "Err! This is not allowed in Our Hogwarts");
     }
