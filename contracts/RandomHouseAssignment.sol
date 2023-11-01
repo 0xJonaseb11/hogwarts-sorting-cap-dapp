@@ -8,8 +8,11 @@ pragma solidity ^0.8.0;
 */
 
 import { HogwartsNFT } from "./HogwartsNFT.sol";
-import { VRFCoordinatorV2Interface } from "chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
-import { VRFConsumerBaseV2 } from "chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
+import { VRFCoordinatorV2Interface } from "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
+import { VRFConsumerBaseV2 } from "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol";
+
+
+import { VRFCoordinatorV2Interface } from "VRFCoordinatorInterface.sol";
 
 
 contract RandomHouseAssignment is VRFConsumerBaseV2 {
