@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.8;
+pragma solidity ^0.8.20;
 
 import { ERC721URIStorage } from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract HogwartsNFT is ERC721URIStorage, Ownable {
+abstract contract HogwartsNFT is ERC721URIStorage, Ownable {
     
     /**
     * @dev let's create different mappings
@@ -95,7 +95,7 @@ contract HogwartsNFT is ERC721URIStorage, Ownable {
     */
 
     function _beforeTokenTransfer(address from, address to, uint256 firstTokenId, uint256 batchSize) 
-    internal virtual override {
+    internal virtual {
         super._beforeTokenTransfer(from, to, firstTokenId, batchSize);
 
         require(from == address(0) || to == address(0), "Err! This is not allowed in Our Hogwarts");
