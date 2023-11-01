@@ -8,11 +8,12 @@ pragma solidity ^0.8.0;
 */
 
 import { HogwartsNFT } from "./HogwartsNFT.sol";
-import { VRFCoordinatorV2Interface } from "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
-import { VRFConsumerBaseV2 } from "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol";
+// import { VRFCoordinatorV2Interface } from "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
+// import { VRFConsumerBaseV2 } from "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol";
 
 
-import { VRFCoordinatorV2Interface } from "VRFCoordinatorInterface.sol";
+import { VRFCoordinatorV2Interface } from "./VRFCoordinatorV2Interface.sol";
+import { VRFConsumerBaseV2 } from "./VRFConsumerBaseV2.sol";
 
 
 contract RandomHouseAssignment is VRFConsumerBaseV2 {
@@ -83,9 +84,4 @@ contract RandomHouseAssignment is VRFConsumerBaseV2 {
         uint256 house = randomWords[0] % 4;
         nftContract.mintNFT(nftOwner, house, name);
     }
-
-
-
-
-
 }
