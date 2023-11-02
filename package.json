@@ -1,0 +1,31 @@
+{
+  "name": "hogwarts-dapp",
+  "version": "1.0.0",
+  "description": "Horgwarts-dapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jonas-sebera/hogwarts-sorting-cap-dapp.git"
+  },
+  "author": "Jonas-Sebera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jonas-sebera/hogwarts-sorting-cap-dapp/issues"
+  },
+  "homepage": "https://github.com/Jonas-sebera/hogwarts-sorting-cap-dapp#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "hardhat": "^2.18.3"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.8.20",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@openzeppelin/contracts": "^5.0.0",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.8.0"
+  }
+}
