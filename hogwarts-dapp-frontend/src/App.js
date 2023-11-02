@@ -96,6 +96,32 @@ const App = () => {
       }
     }
   }, [account, started]);
+
+
+  const disconnectMetamask = async () => {
+    try {
+      await window.ethereum.enable();
+      setConnected(false);
+      setAccount("");
+      setHouse("");
+      sethouseSlogan("");
+      stopBgSound("");
+      setStarted(false);
+      setIsUserNameSubmitted(false);
+      setUserName("");
+    } catch(err) {
+      console.error(err);
+    } 
+  };
+
+  const connectMetamask = async () => {
+    try {
+      await window.ethereum.request({ method: "wallet_requestPermissions", params: [{eth_accounts: {}}]});
+      setConnected(true);
+    } catch (err) {
+      console.error(err);
+    }
+  };
           // counter counts backwarfds from 60
   return (
     <div className="App">
