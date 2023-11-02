@@ -43,7 +43,10 @@ const App = () => {
   const [isUserNameSubmitted, setIsUserNameSubmitted] = useState(false);
   const [responseLoading, setResponseLoading] = useState(false);
 
-  
+
+  const defaultLoadingMessage = "Ah, right then... hmm.. right";
+  const dynamicLoadingMessage = `Ahh seems difficult, let me think harder, wait for ${counter}`;
+          // counter counts backwarfds from 60
   return (
     <div>App</div>
   )
