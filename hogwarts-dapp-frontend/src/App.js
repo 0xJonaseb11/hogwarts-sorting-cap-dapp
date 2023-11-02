@@ -220,7 +220,7 @@ const App = () => {
     switch(houseIndex) {
       case '0': playThinkingSound();
       break;
-      
+
       case '1': playHufflepuffSound();
       break;
 
@@ -235,6 +235,37 @@ const App = () => {
     }
     setLoading(false);
   };
+
+
+  const showNameField = () => (
+    <div className="form">
+      <input 
+      className="input-box"
+      type="text"
+      placeholder="Enter Your name"
+      value={userName}
+      onChange={(e) => setUserName(e.target.value)}
+      />
+
+      <button className="form-button"
+      onClick={() => {
+        setUserName(userName);
+        setIsUserNameSubmitted(true);
+      }}
+      >
+        Submit
+      </button>
+    </div>
+  );
+
+  //startButton component
+  const startButton = () => (
+    <button className="start-button"
+    onClick={() => {
+      setStarted(true);
+      playBgSound()
+    }}></button>
+  )
 
 
           
