@@ -16,7 +16,7 @@ import { VRFCoordinatorV2Interface } from "./VRFCoordinatorV2Interface.sol";
 import { VRFConsumerBaseV2 } from "./VRFConsumerBaseV2.sol";
 
 
-abstract contract RandomHouseAssignment is VRFConsumerBaseV2 {
+ contract RandomHouseAssignment is VRFConsumerBaseV2 {
 
     //state variables
     HogwartsNFT public nftContract; //an instance of HogwartsNFT contract

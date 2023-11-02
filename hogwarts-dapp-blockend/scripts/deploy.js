@@ -34,7 +34,7 @@ async function main() {
     
     // Getting the Contract Address (Again):
     const randomAddress = await randomHouse.getAddress();
-    console.log("Random House Assignment deployed to:", randomAddress);
+    console.log("Random House Assignment deployed to:", randomAddress.target);
 
     //Transfering ownership
     await hogwartsNFT.transferOwnership(randomAddress);

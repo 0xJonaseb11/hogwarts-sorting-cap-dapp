@@ -94,7 +94,7 @@ pragma solidity ^0.8.4;
  * @dev responding to the request (however this is not enforced in the contract
  * @dev and so remains effective only in the case of unmodified oracle software).
  */
-abstract contract VRFConsumerBaseV2 {
+contract VRFConsumerBaseV2 {
   error OnlyCoordinatorCanFulfill(address have, address want);
   address private immutable vrfCoordinator;
 
