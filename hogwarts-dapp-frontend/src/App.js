@@ -36,7 +36,7 @@ const App = () => {
   const [minted, setMinted] = useState("");
   const [connected, setConnected] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [checkMintedSuccess] = useState(0);
+  const [checkMintedSuccess, setCheckMintSuccess] = useState(0);
   const [counter, setCounter] = useState(30);
   const [displayCounter, setDisplayCounter] = useState(false);// counter counts backwarfds from 60
   const [started, setStarted] = useState(false);
@@ -151,7 +151,21 @@ const App = () => {
     setTimeout(async() => {
       const minted = await hogwartsContract.methods.hasMintedNFt(account).call();
       console.log(minted, checkMintedSuccess);
-    })
+
+      if (minted == true) {
+        setMinted(true);
+        getHouseData();
+        checkName();
+        setLoading(false);
+        setCounter(3);
+        setDisplayCounter(false);
+      } else if (checkMintedSuccess < 3) {
+        setCheckMintSuccess(prev => prev + 1);
+        setCounter(prev => prev - 1);
+        checkNewMinted();
+      }
+
+    }, 800);
   }
 
 
