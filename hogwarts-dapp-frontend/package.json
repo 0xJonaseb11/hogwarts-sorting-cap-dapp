@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "0.9.5"
+    "react-scripts": "0.9.5",
+    "use-sound": "^4.0.1",
+    "web3-react": "^5.0.5"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

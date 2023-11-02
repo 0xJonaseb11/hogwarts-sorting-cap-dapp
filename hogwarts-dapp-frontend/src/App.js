@@ -20,7 +20,7 @@ import bgSound from "./sounds/bg_music.mp3";
 
 const web3 = new Web3(window.ethereum);
 
-function App() {
+const App = () => {
   const [account, setAccount] = useState("");
   const [hogwartsContract, setHogwartsContract] = useState(null);
   const [randomHouseContract, setRandomHouseContract] = useState(null);  
@@ -245,28 +245,28 @@ function App() {
       </button>)
 
     const mintedView = ()=> (
-        <>
+        <div>
           {loading || !house ? (
             <p>{displayCounter ? (counter ? dynamicLoadingMessage : defaultLoadingMessage) : defaultLoadingMessage}</p>
           ) : (
-            <>
+            <div>
               <p>{house}</p>
-              {house_slogan.split('. ').map((slogan, index) => (
+              {house_slogan.split('.').map((slogan, index) => (
                 <p key={index}>{slogan}</p>
               ))}
-            </>
+            </div>
           )}
-        </>
+        </div>
       
     )
 
     const mintNFT = () => (
       
-        <>
+        <div>
           {!userName || !isUserNameSubmitted ? showNameField() :
           !loading ? <button onClick={requestNFT} disabled={minted}>Let's choose your house</button> : <p className="loading-button-msg">{displayCounter ? (counter ? dynamicLoadingMessage : defaultLoadingMessage) : defaultLoadingMessage}</p>
           }
-        </>
+        </div>
       
     )
 
@@ -275,18 +275,18 @@ function App() {
     };
 
     const connectedView = ()=> (
-      <>
+      <div>
          {responseLoading ? <Lottie animationData={HPLoader} style={style} loop={true} /> : minted ? mintedView() : mintNFT()}
       <button className="metamask-button" onClick={disconnectMetamask}> disconnect wallet </button>
-      </>
+      </div>
     )
 
     const gameStarted = ()=>(
-      <>
+      <div>
       {  
         connected ? connectedView () : <button className="metamask-button" onClick={connectMetamask}> connect wallet </button>
       }    
-      </>
+      </div>
     )
 
     return (
