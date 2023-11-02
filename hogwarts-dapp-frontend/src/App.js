@@ -163,6 +163,17 @@ const App = () => {
   };
 
 
+  const checkName = async() => {
+    setLoading(true);
+    const name = await hogwartsContract.methods.s_addressToName(account).call();
+    if (name) {
+      setUserName(true);
+      setIsUserNameSubmitted(true);
+    }
+    console.log("Name set");
+  };
+
+
   const checkNewMinted = async () => {
     setDisplayCounter(true);
     setTimeout(async() => {
