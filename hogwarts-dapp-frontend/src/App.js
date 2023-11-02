@@ -197,6 +197,46 @@ const App = () => {
   }
 
 
+  const getHouseData = async () => {
+    setLoading(true);
+    const houseIndex = await hogwartsContract.methods.getHouseIndex(account).call();
+    const addressToHouse = [
+      "Your belong in Gryffindor...",
+      "You belong in Hufflepuff....",
+      "You belong in wise old Ravenclaw....", 
+      "You belong perhaps in Slytherin...."
+    ];
+    setHouse(addressToHouse[houseIndex]);
+
+    const sloganToHouse = [
+      "Where dwell the brave at heart. Their daring, nerve, and chivalry, Set Gryffindors apart.",    
+      "Where they are just and loyal. Those patient Hufflepuffs are true And unafraid of toil.",    
+      "you’ve a ready mind. Where those of wit and learning, Will always find their kind.",    
+      "You’ll make your real friends. Those cunning folks use any means, To achieve their ends."
+    ];
+    sethouseSlogan(sloganToHouse[houseIndex]);
+
+    //switch case for the logic
+    switch(houseIndex) {
+      case '0': playThinkingSound();
+      break;
+      
+      case '1': playHufflepuffSound();
+      break;
+
+      case '2': playRavenclawSound();
+      break;
+
+      case '3': playSlytherinSound();
+      break;
+
+      default:
+        break;
+    }
+    setLoading(false);
+  };
+
+
           
   return (
     <div className="App">
