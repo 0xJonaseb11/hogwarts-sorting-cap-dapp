@@ -146,6 +146,23 @@ const App = () => {
   }
 
 
+  const checkMinted = async () => {
+    await checkName();
+    const minted = hogwartsContract.methods.hasMintedNFt(account).call();
+    console.log("minted:", minted);
+
+    if (minted == true) {
+      setMinted(true);
+      await getHouseData();
+      setLoading(false);
+    } else {
+      setMinted(false);
+      setLoading(false);
+    }
+    setResponseLoading(false);
+  };
+
+
   const checkNewMinted = async () => {
     setDisplayCounter(true);
     setTimeout(async() => {
