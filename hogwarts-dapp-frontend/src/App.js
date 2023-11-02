@@ -274,27 +274,25 @@ const App = () => {
 
   const mintedView = () => (
     <>
-    {loading || !house ? (
-      <p>
-        {displayCounter ? counter
-        ? dynamicLoadingMessage
-        : defaultLoadingMessage
-        : defaultLoadingMessage}
-      </p>
-
-    ) : (
-      <>
-      <p>
-        {house}
-        </p> 
-        {house_slogan.split('.').map((slogan, index) => (
-          <p key={index}>{slogan}</p>
-        ))}
+      {loading || !house ? (
+        <p>
+          {displayCounter
+            ? counter
+              ? dynamicLoadingMessage
+              : defaultLoadingMessage
+            : defaultLoadingMessage}
+        </p>
+      ) : (
+        <>
+          <p>{house}</p>
+          {house_slogan.split('. ').map((slogan, index) => (
+            <p key={index}>{slogan}</p>
+          ))}
         </>
       )}
     </>
   );
-
+  
 
   // connectedView component
   const connectedView = () => (
@@ -313,11 +311,26 @@ const App = () => {
   );
 
 
+  // gameStarted component
+  const gameStarted = () => {
+    <>
+    {connected ? (
+      connectedView()
+    ) : (
+      <button className="metamask-button" onClick={connectMetamask}>
+        Connect wallet
+      </button>
+    )};
+    </>
+  };
+
+
           
   return (
     <div className="App">
      <img className="Hogwarts-logo" src={HogwartsLogo} alt="Hogwarts Logo" />
       <h1>Welcome to Hogwarts</h1>
+      {started ? gameStarted() : startButton()}
     </div>
   )
 }
