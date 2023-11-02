@@ -263,9 +263,54 @@ const App = () => {
     <button className="start-button"
     onClick={() => {
       setStarted(true);
-      playBgSound()
-    }}></button>
-  )
+      playBgSound();
+      setResponseLoading(true);
+    }}
+    >
+      Let's Go To The Great Hall
+    </button>
+  );
+
+
+  const mintedView = () => (
+    <>
+    {loading || !house ? (
+      <p>
+        {displayCounter ? counter
+        ? dynamicLoadingMessage
+        : defaultLoadingMessage
+        : defaultLoadingMessage}
+      </p>
+
+    ) : (
+      <>
+      <p>
+        {house}
+        </p> 
+        {house_slogan.split('.').map((slogan, index) => (
+          <p key={index}>{slogan}</p>
+        ))}
+        </>
+      )}
+    </>
+  );
+
+
+  // connectedView component
+  const connectedView = () => (
+    <>
+    {responseLoading ? (
+      <Lottie animationData={HPLoader} style={style} loop={true} />
+    ) : minted ? (
+      mintedView()
+    ) : (
+      mintNFT()
+    )}
+    <button className="metamask-button" onClick={disconnectMetamask}>
+      disconnect wallet
+    </button>
+    </>
+  );
 
 
           
