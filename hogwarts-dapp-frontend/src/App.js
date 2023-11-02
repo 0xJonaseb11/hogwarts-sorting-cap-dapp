@@ -18,6 +18,7 @@ import slytherinSound from "./sounds/slytherin.mp3";
 import thinkingSound from "./sounds/thinking.mp3"; 
 import bgSound from "./sounds/bg_music.mp3";
 import { useEffect, useState } from "react";
+import { errors } from "ethers";
 
 
 //initialize a web3 library
@@ -37,7 +38,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [checkMintedSuccess] = useState(0);
   const [counter, setCounter] = useState(30);
-  const [displayCounter, setDisplayCounter] = useState(false);
+  const [displayCounter, setDisplayCounter] = useState(false);// counter counts backwarfds from 60
   const [started, setStarted] = useState(false);
   const [userName, setUserName] = useState("");
   const [isUserNameSubmitted, setIsUserNameSubmitted] = useState(false);
@@ -122,7 +123,30 @@ const App = () => {
       console.error(err);
     }
   };
-          // counter counts backwarfds from 60
+
+  const requestNFT = () => {
+    randomHouseContract.methods
+        .requestNFT(userName)
+        .send({ from: account, value: web3.utils.toWei("0", "ether")})
+        .on("transactionHash", function(hash) {
+          console.log("Transaction sent. Transaction hash:", hash);
+          setLoading(true); // set loading to true before sending the transaction
+
+          // Play the thinking sound once the transaction is sent (User pays for the transaction)
+          playThinkingSound();
+        })
+        .on("receipt", function (receipt) {
+          console.log("Transaction successful:", receipt.transactionHash);
+          checkNewMinted();
+        })
+        .on("error", (error) => {
+          console.error("Error requesting NFT:", error);
+          setLoading(false); // set loading back to false if there is an error during transaction
+        });
+  }
+
+
+          
   return (
     <div className="App">
      <img className="Hogwarts-logo" src={HogwartsLogo} alt="Hogwarts Logo" />
