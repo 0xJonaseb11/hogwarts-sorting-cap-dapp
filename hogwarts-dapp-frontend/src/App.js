@@ -146,6 +146,15 @@ const App = () => {
   }
 
 
+  const checkNewMinted = async () => {
+    setDisplayCounter(true);
+    setTimeout(async() => {
+      const minted = await hogwartsContract.methods.hasMintedNFt(account).call();
+      console.log(minted, checkMintedSuccess);
+    })
+  }
+
+
           
   return (
     <div className="App">
